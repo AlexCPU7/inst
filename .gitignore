@@ -1,0 +1,12 @@
+.idea
+
+*.pyc
+*.sqlite3
+
+venv
+env
+
+project/conf.py
+/media
+/docker/logs/*
+
