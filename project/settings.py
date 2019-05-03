@@ -52,6 +52,7 @@ REST_FRAMEWORK = {
 }
 
 ROOT_URLCONF = 'project.urls'
+AUTH_USER_MODEL = 'core.User'
 
 TEMPLATES = [
     {
