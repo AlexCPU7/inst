@@ -72,11 +72,14 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['date_birth']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'date_birth']
 
     class Meta:
         verbose_name = _('Пользователь')
         verbose_name_plural = _('Пользователи')
+
+    def __str__(self):
+        return '{} ({})'.format(self.get_full_name(), self.email)
 
     def clean(self):
         super().clean()
