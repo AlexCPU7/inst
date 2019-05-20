@@ -25,7 +25,7 @@ class TagProduct(models.Model):
         return self.title
 
 
-def upload_path_handler(instance, filename, kek):
+def upload_path_handler(instance, filename):
     import os.path
     fn, ext = os.path.splitext(filename)
     file_name = '{}_{}{}'.format(uuid4().hex, int(time()), ext)

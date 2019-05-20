@@ -11,3 +11,5 @@ project/conf.py
 /media
 /docker/logs/*
 
+/database
+/docker/database

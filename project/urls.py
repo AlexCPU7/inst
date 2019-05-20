@@ -11,8 +11,9 @@ from core import views
 # router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('core.urls')),
+    path('', admin.site.urls),
+    # path('admin/', admin.site.urls),
+    # path('', include('core.urls')),
     # path('test', include(router.urls)),
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
