@@ -6,8 +6,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.validators import MinValueValidator
 from django.utils.html import format_html
 
-from core.logic.save_file import UUIDFileStorage
-
 from shop.models.catalog import Category
 
 
@@ -25,11 +23,11 @@ class TagProduct(models.Model):
         return self.title
 
 
-def upload_path_handler(instance, filename, kek):
+def upload_path_handler_sticker_product(instance, filename):
     import os.path
     fn, ext = os.path.splitext(filename)
     file_name = '{}_{}{}'.format(uuid4().hex, int(time()), ext)
-    return "shop/images/tag__{}/{}".format(instance.url, file_name)
+    return "shop/stickers/{}/images/{}".format(instance.url, file_name)
 
 
 class StickerProduct(models.Model):
@@ -37,11 +35,8 @@ class StickerProduct(models.Model):
     url = models.SlugField(_('URL'), max_length=50, unique=True)
     desc = models.TextField(_('Описание'), blank=True, null=True, max_length=5000)
     image = models.ImageField(_('Изображение'),
-                              # upload_to='shop/images/tag',
-                              upload_to=upload_path_handler,
-                              # storage=UUIDFileStorage(),
-                              unique=True,
-                              blank=True, null=True)
+                              upload_to=upload_path_handler_sticker_product,
+                              unique=True, blank=True, null=True)
     create_dt = models.DateTimeField(_('Дата создания'), auto_now_add=True)
     update_dt = models.DateTimeField(_('Дата изменения'), auto_now=True)
 
@@ -60,6 +55,13 @@ class StickerProduct(models.Model):
     image_tag.short_description = 'Изоражение'
 
 
+def upload_path_handler_product(instance, filename):
+    import os.path
+    fn, ext = os.path.splitext(filename)
+    file_name = '{}_{}{}'.format(uuid4().hex, int(time()), ext)
+    return "shop/products/{}/images/{}".format(instance.url, file_name)
+
+
 class Product(models.Model):
     title = models.CharField(_('Название'), max_length=100)
     url = models.SlugField(_('URL'), max_length=100, unique=True)
@@ -74,8 +76,7 @@ class Product(models.Model):
     # производитель мб
     desc = models.TextField(_('Описание'), blank=True, null=True, max_length=50000)
     image_main = models.ImageField(_('Главное изображение'),
-                                   upload_to='shop/product/{}/image_main'.format(url),
-                                   storage=UUIDFileStorage(),
+                                   upload_to=upload_path_handler_product,
                                    unique=True, blank=True, null=True)
 
     price = models.DecimalField(_('Цена, руб'), max_digits=12, decimal_places=2,
