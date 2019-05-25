@@ -1,13 +1,9 @@
 version: '3'
 
-# хранилища
-#volumes:
-#    pgdata:
-#        driver: local
 services:
     nginx:
         restart: always
-        image: nginx:latest
+        image: nginx:1.16
         expose:
           - 8080
         ports:
@@ -42,47 +38,3 @@ services:
             PGDATA: /var/lib/postgresql/data
         volumes:
             - ./docker/database:/var/lib/postgresql/data
-
-
-#version: '3'
-#
-#services:
-#    nginx:
-#        restart: always
-#        image: nginx:latest
-#        volumes:
-#          - ./static:/srv/www/project/static
-#          - ./media:/srv/www/project/media
-#          - ./docker/logs:/srv/www/project/docker/logs
-#          - ./docker/nginx:/etc/nginx/conf.d
-#        expose:
-#          - 8080
-#        ports:
-#          - "8080:8080"
-#        depends_on:
-#          - web
-#    web:
-#        restart: always
-#        build:
-#          context: .
-#          dockerfile: docker/python/Dockerfile
-#        volumes:
-#          - .:/srv/www/project
-#        command: "gunicorn -c gunicorn.py project.wsgi"
-#        expose:
-#          - 8000
-#        ports:
-#          - "8000:8000"
-#        depends_on:
-#          - postgres
-#    postgres:
-#        image: postgres:11.1
-#        ports:
-#          - "5432:5432"
-#        environment:
-#          POSTGRES_USER: root
-#          POSTGRES_PASSWORD: root
-#          POSTGRES_DB: inst
-#          PGDATA: /var/lib/postgresql/data
-#        volumes:
-#          - ./docker/database:/var/lib/postgresql/data
