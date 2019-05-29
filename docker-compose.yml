@@ -21,7 +21,7 @@ services:
             context: .
             dockerfile: docker/python/Dockerfile
         volumes:
-            - .:/srv/www/<project>
+            - .:/srv/www/project
         expose:
           - 8000
         ports:

@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from shop.models.product import Product, TagProduct, StickerProduct
+from shop.models.product import Product
+from shop.models.other_product import TagProduct, StickerProduct
 
 
 class ProductAdmin(admin.ModelAdmin):
