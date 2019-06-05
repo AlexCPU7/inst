@@ -19,8 +19,9 @@ class Group(models.Model):
     url = models.SlugField(_('URL'), max_length=100, unique=True)
     category = models.ForeignKey(Category,
                                  verbose_name=_(u'Категория'),
-                                 on_delete=models.SET_NULL)
-    type = models.CharField('Тип', choices=group_types)
+                                 on_delete=models.SET_NULL,
+                                 null=True)
+    type = models.CharField('Тип', choices=group_types, max_length=20)
     is_filter = models.BooleanField(_('Активность в фильтре'), default=1)
     desc = models.TextField(_('Описание'), blank=True, null=True)
 

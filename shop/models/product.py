@@ -7,6 +7,7 @@ from django.core.validators import MinValueValidator
 from django.utils.html import format_html
 
 from shop.models.catalog import Category
+from shop.models.other_product import TagProduct, StickerProduct
 
 
 def upload_path_handler_product(instance, filename):

@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'core',
     'account',
     'shop',
+    'image'
 ]
 
 MIDDLEWARE = [

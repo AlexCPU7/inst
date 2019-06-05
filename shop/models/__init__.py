@@ -1,4 +1,4 @@
-from .catalog import Category
+from .catalog import *
 from .product import *
 from .attribute import *
 from .offer import *
